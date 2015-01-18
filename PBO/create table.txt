@@ -1,0 +1,68 @@
+
+create table suppliers
+(
+	IdSupp char(3) NOT NULL UNIQUE,
+	NamaSupp varchar(100),
+	constraint IdSupp_pk PRIMARY KEY (IdSupp)
+)
+create table products
+(
+	IdPrd varchar(7) NOT NULL UNIQUE,
+	NamaPrd varchar(100),
+	IdSupp char(3),
+	Harga int,
+	constraint IdPrd_pk PRIMARY KEY (IdPrd),
+	constraint IdSupp_fk FOREIGN KEY (IdSupp) REFERENCES suppliers
+)
+create table users
+(
+	IdUser NUMERIC DEFAULT UNIQUEKEY('users'),
+	Nama varchar(40),
+	Username varchar(15) NOT NULL,
+	Password varchar(15) NOT NULL,
+	Level varchar(15) NOT NULL,
+	Alamat varchar(100),
+	Telepon varchar(15),
+	status int,
+	constraint IdUser_pk PRIMARY KEY (IdUser)
+)
+create table stok
+(
+	IdStok NUMERIC DEFAULT UNIQUEKEY('stok'),
+	IdPrd varchar(7),
+	JumlahStok int,
+	constraint IdStok_pk PRIMARY KEY (IdStok),
+	constraint IdPrd_fk FOREIGN KEY (IdPrd) REFERENCES products
+	
+)
+create table transaksi
+(
+	IdTrans NUMERIC DEFAULT UNIQUEKEY('transaksi'),
+	TglTrans varchar(15),
+	IdPrd varchar(7),
+	JumlahTrans int,
+	IdUser numeric,
+	HargaSatuan int,
+	SubTotal int,
+	constraint IdTrans_pk PRIMARY KEY (IdTrans),
+	constraint IdPrd2_fk FOREIGN KEY (IdPrd) REFERENCES products,
+	constraint IdUser_fk FOREIGN KEY (IdUser) REFERENCES users
+	
+)
+
+create table transaksi
+(
+	IdTrans NUMERIC DEFAULT UNIQUEKEY('transaksi'),
+	TglTrans varchar(15),
+	IdPrd varchar(7),
+	JumlahTrans int,
+	IdUser numeric,
+	HargaSatuan int,
+	SubTotal real,
+	constraint IdTrans_pk PRIMARY KEY (IdTrans),
+	constraint IdPrd2_fk FOREIGN KEY (IdPrd) REFERENCES products,
+	constraint IdUser_fk FOREIGN KEY (IdUser) REFERENCES users
+	
+)
+String query1="insert into transaksi values(UNIQUEKEY('transaksi'),'"+txtTanggal.getText()+"','"+cmbIdPrd.getSelectedItem().toString()+"',"+txtJumlah.getText()+","+tampung;  
+cmbLevel.setModel(new DefaultComboBoxModel(new String[] {"admin", "user"}));  
